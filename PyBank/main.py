@@ -11,6 +11,7 @@ tol_net = 0
 average_change = []
 profit_list = []
 loss_list = ["", 0]
+profitDic = {}
 
 with open(banking_upload, "r") as csvfile:
     bankdata = csv.reader(csvfile, delimiter=",")
@@ -23,15 +24,10 @@ with open(banking_upload, "r") as csvfile:
     firstnumber = int(firstRow[1])
     tol_net = tol_net + int(firstRow[1])
 
-    print(header)
-    print(firstRow)
-    print(firstnumber)
-    print(tol_net)
-    print("--------------------------")
-
     for row in bankdata:
         profit_list.append(tol_net)
         profit_list = [line.rstrip('\n') for line in csvfile]
+        profitDic = profit_list
            # if profit_list
 
 
@@ -44,7 +40,6 @@ with open(banking_upload, "r") as csvfile:
     average_change = int(tol_net / tot_months)
 
 
-print(profit_list)
 print("Financial Analysis")
 print("-----------------------------------")
 print(f"Total Months: {tot_months}")
