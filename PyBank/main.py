@@ -27,10 +27,10 @@ with open(banking_upload, "r") as csvfile:
         tot_months = tot_months + 1
         #!explain logic
         tol_net = tol_net + int(line[1])
-
+tolMonV = ("Total Months: {:,}".format(tot_months))
 tolnetV = ("Total Profit: ${:,}".format(tol_net))
 
-#find max and min, loop, list
+#find max and min, for loop, create a list stored as profit
 with open(banking_upload, 'r') as secnd:
     next(secnd)
     for row in csv.reader(secnd):
@@ -46,11 +46,25 @@ min_calc = ("Greatest Decrease in Profits: ${:,}".format(minProfit))
 #simple avg: divide total net by total months
 average_change = int(tol_net / tot_months)
 AvgChange = ("Average Change: ${:,}".format(average_change))
+result_header = "Financial Analysis:"
+skipper = "----------------------------------------"
 
-print("Financial Analysis")
-print("-----------------------------------")
-print(f"Total Months: {tot_months}")
-print(tolnetV)
-print(AvgChange)
-print(max_calc)
-print(min_calc)
+print(f"{result_header}\n"
+      f"{skipper}\n"
+      f"{tolMonV}\n"
+      f"{tolnetV}\n"
+      f"{AvgChange}\n"
+      f"{max_calc}\n"
+      f"{min_calc}\n")
+
+output = [result_header, skipper, tolMonV, tolnetV, AvgChange,
+          max_calc, min_calc]
+
+with open(banking_output, "w") as resultsf:
+    writer = csv.writer(resultsf)
+    
+    for row in output:
+        resultsf.write(row + '\n')
+
+
+
