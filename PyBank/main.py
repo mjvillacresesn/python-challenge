@@ -62,7 +62,7 @@ output = [result_header, skipper, tolMonV, tolnetV, AvgChange,
 
 with open(banking_output, "w") as resultsf:
     writer = csv.writer(resultsf)
-    
+
     for row in output:
         resultsf.write(row + '\n')
 
