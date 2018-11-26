@@ -5,16 +5,16 @@ poll_infile = os.path.join(".", "election_data.csv")
 #poll_outfile = os.path.join(".", "election_results.txt")
 
 #List to store data
-#Khan = []
-#Correy = []
-#Li = []
-#OTooley = []
 CandidatesList = []
 KhanV = []
 Correy = []
 Li = []
 otherc = []
-
+KhanPercent = 0
+CorreyPercent = 0
+LiPercent = 0
+OTooleyPercent = 0
+WinnerCounter = {}
 
 #find total # months and total net value, loop
 with open(poll_infile, 'r') as csvfile:
@@ -40,24 +40,44 @@ with open(poll_infile, 'r') as another:
         else:
             otherc.append("1")
 
+counterKha = sum(1 for numb in KhanV)
+#WinnerCounter.append(counterKha, "Khan")
+counterCor = sum(1 for numb in Correy)
+#WinnerCounter.append(counterCor)
+counterLi = sum(1 for numb in Li)
+#WinnerCounter.append(counterLi)
+counterOte = sum(1 for numb in otherc)
+#WinnerCounter.append(counterOte)
 
-header = "Election Results\n"
-skipper = "----------------------------------\n"
+#winnerYOU = max(WinnerCounter)
+#print(winnerYOU)
+
+KhanPercent =("Khan: {0:.0%}".format(counterKha/vote_count))
+CorreyPercent =("Correy: {0:.0%}".format(counterCor/vote_count))
+LiPercent =("Li: {0:.0%}".format(counterLi/vote_count))
+OTooleyPercent =("O'Tooley: {0:.0%}".format(counterOte/vote_count))
+
+header = "Election Results"
+skipper = "----------------------------------"
+K = (str(KhanPercent) + " " +"(" + str(counterKha) + ")")
+C = (str(CorreyPercent) + " " +"(" + str(counterCor) + ")")
+L = (str(LiPercent) + " " +"(" + str(counterLi) + ")")
+O = (str(OTooleyPercent) + " " +"(" + str(counterOte) + ")")
+#! Sill working on extracting "khan" as the winner
+Winner = "Winner: Khan"
+#winner =max()
 print(f"{header}\n"
       f"{skipper}\n"
       f"{tol_count}\n"
+      f"{skipper}\n"
+      f"{K}\n"
+      f"{C}\n"
+      f"{L}\n"
+      f"{O}\n"
+      f"{skipper}\n"
+      f"{Winner}\n"
       f"{skipper}\n")
-skipper = "----------------------------------\n"
-counterKha = sum(1 for numb in KhanV)
-print(f"Khan: {counterKha}")
 
-counterCor = sum(1 for numb in Correy)
-print(f"Correy: {counterCor}")
 
-counterLi = sum(1 for numb in Li)
-print(f"Li: {counterLi}")
 
-counterOte = sum(1 for numb in otherc)
-print(f"O'Tooley: {counterOte}")
-#counterKha = sum(1 for num in Khan)
-#print(counterKha)
+
