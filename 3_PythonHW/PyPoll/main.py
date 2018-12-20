@@ -1,5 +1,6 @@
 import os
 import csv
+import pandas as pd
 
 poll_infile = os.path.join(".", "election_data.csv")
 poll_outfile = os.path.join(".", "election_results.txt")
@@ -78,7 +79,7 @@ for winner in Consolidated_count:
 W = ("Winner: " + str(winnerCand))
 
 KhanPercent =("Khan: {0:.0%}".format(counterKha/vote_count))
-CorreyPercent =("Correy: {0:.0%}".format(counterCor/vote_count))
+CorreyPercent =("Correy: {:0.0}".format(counterCor/vote_count))
 LiPercent =("Li: {0:.0%}".format(counterLi/vote_count))
 OTooleyPercent =("O'Tooley: {0:.0%}".format(counterOte/vote_count))
 
